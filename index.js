@@ -7,7 +7,7 @@ const fetch = require('node-fetch')
 const rarities = [['(Very Common)', ':white_large_square:', '#FFFFFF'], ['(Common)', ':green_square: ', '#32CD32'], ['(Uncommon)', ':blue_square:', '#2a9df4'], ['(Rare)', ':purple_square:', '#800080'], ['(Legendary)', ':yellow_square:', '#FFFF00']]
 // Now the actual bot stuff, so stop doing these comments arc
 bot.on('ready', () => {
-    console.log('Online');
+    console.log(`Online`);
     bot.user.setActivity('Noot | [p!help]', {
         type: 'WATCHING'
     }).catch(console.error);
@@ -174,7 +174,7 @@ bot.on('message', async message => {
                                     .addField(`<:evolution:747193830981369886> Growth:`, ` **${correctpet.data.growth}**`)
                                     .addField(`:star: Native spells:`, nativespells.join(', '))
                                     .addField(`:star2: Foreign spells (spells the pet has but isn't of their element):`, foreignspells.join(', '))
-                                if (correctpet.data.curve[correctpet.data.curve.length - 1]) {
+                                if (correctpet.data.curve[correctpet.data.curve.length - 1].evolveID) {
                                     resembed.addField(`:sparkles: Evolution level:`, correctpet.data.curve[correctpet.data.curve.length - 1].lvl)
                                 }
                                 message.channel.send(resembed)
