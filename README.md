@@ -1,5 +1,6 @@
 ﻿# ProdigyMathGameBot
 ## This bot allows you to access Prodigy items, pets, statistics, and more! Additionally, it syncs with the Prodigy API, so it automatically updates!
+Prefix - `p!`
 ---------
 #### Current commands:
 ### p!backpack
