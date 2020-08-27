@@ -96,6 +96,7 @@ bot.on('message', async message => {
                                     resembed.addField(`:heart: Health multipliers:`, `Increases health by +${correctobj.data.effect.hpPercent}`)
                                 }
                                 if (correctobj.data.type === 'potion') {
+                                correctobj.data.effect = correctobj.data.effect.replace('[bonus-arrow]','<:bonus:748575872151453726>')
                                     resembed.addField(`:crossed_swords: Battle effects:`, correctobj.data.effect)
                                     resembed.addField(`:sparkles: Potency:`, correctobj.data.potency)
                                 }
