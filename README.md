@@ -1,4 +1,4 @@
-﻿# ProdigyMathGameBot ![IMG_PROD](https://sso.prodigygame.com/assets/favicon/rebrand-favicon-512x512-6f8e2203ce1008233f00501e4aa6f13845932e5d4a3af8c8cddc17ce88ef474f.png)
+﻿# ProdigyMathGameBot
 ## This bot allows you to access Prodigy items, pets, statistics, and more! Additionally, it syncs with the Prodigy API, so it automatically updates!
 Prefix - `p!`
 ---------
