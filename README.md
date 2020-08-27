@@ -12,3 +12,5 @@ Prefix - `p!`
 ### p!info
 #### Gives info on the bot.
 
+***Licensed under the GNU General Public License V3***
+
