@@ -2,6 +2,8 @@
 ## This bot allows you to access Prodigy items, pets, statistics, and more! Additionally, it syncs with the Prodigy API, so it automatically updates!
 Prefix - `p!`
 ---------
+## Invite it [here!](https://discord.com/oauth2/authorize?client_id=746458284059394050&scope=bot&permissions=314432)
+---------
 #### Current commands:
 ### p!backpack
 #### Gives you a list of categories and items. After answering which you want, you can get more detailed info on a single item. | Special items have special data, like potions.
