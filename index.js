@@ -92,9 +92,10 @@ bot.on('message', async message => {
                                     .addField(`:gem: Rarity:`, `${rarities[r][1]} ${rarities[r][0]}`)
                                     .addField(`<:membership:746796337105993748> Member-exclusive:`, isMember)
                                     .setColor(rarities[r][2])
-                                if (correctobj.data.effect.hpPercent) {
+                                if (correctobj.data.effect) {
+                                    if (correctobj.data.effect.hpPercent) {
                                     resembed.addField(`:heart: Health multipliers:`, `Increases health by +${correctobj.data.effect.hpPercent}`)
-                                }
+                                }}
                                 if (correctobj.data.type === 'potion') {
                                 correctobj.data.effect = correctobj.data.effect.replace('[bonus-arrow]','<:bonus:748575872151453726>')
                                     resembed.addField(`:crossed_swords: Battle effects:`, correctobj.data.effect)
