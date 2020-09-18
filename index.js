@@ -66,14 +66,14 @@ bot.on('message', async message => {
                     const pickentryemb = new Discord.MessageEmbed()
                         .setTitle(`Entries for ${lowercaseinput.charAt(0).toUpperCase() + lowercaseinput.slice(1)}-`)
                         .setDescription(`Choose one of the following:\n${entriesarray.join(', ')}`)
-                        .setFooter('You have 30 seconds to choose a valid option. | Some results may have been omitted for the proper length of Discord messages. | Entries are case-sensitive.')
+                        .setFooter('You have 30 seconds to choose a valid option. | Some results may have been omitted for the proper length of Discord messages.')
                     message.channel.send(pickentryemb)
                     message.channel.awaitMessages(m => m.author.id == message.author.id,
                         { max: 1, time: 30000000 }).then(collected => {
+                            collected.first().content = collected.first().content.charAt(0).toUpperCase() + collected.first().content.slice(1)
                             if (!entriesarray.includes(collected.first().content)) return;
                             let correctobj = correctdata[entriesarray.indexOf(collected.first().content)]
                             let r = correctobj.data.rarity
-                            console.log(correctobj)
                             let isMember = 'Yes'
                             if (!correctobj.data.member) {
                                 isMember = 'No'
@@ -149,13 +149,14 @@ bot.on('message', async message => {
                     const petnameembed = new Discord.MessageEmbed()
                         .setTitle(`Pick your preferred ${collected.first().content.charAt(0).toUpperCase() + collected.first().content.slice(1)} pet:`)
                         .setDescription(petnames.join(', '))
-                        .setFooter('You have 30 seconds to choose a valid option. | Some results may have been omitted for the proper length of Discord messages. | Entries are case-sensitive.')
+                        .setFooter('You have 30 seconds to choose a valid option. | Some results may have been omitted for the proper length of Discord messages.')
                     if (correctelement === shadow) {
                         petnameembed.addField('**Note:**', 'Shadow pet data may be depleted, since they are unable to be collected in-game.')
                     }
                     message.channel.send(petnameembed)
                     message.channel.awaitMessages(m => m.author.id == message.author.id,
                         { max: 1, time: 30000000 }).then(collected => {
+                            collected.first().content = collected.first().content.charAt(0).toUpperCase() + collected.first().content.slice(1)
                             if (!petnames.includes(collected.first().content)) return;
                             let correctpet = correctelement[petnames.indexOf(collected.first().content)]
                             let nativespells = []
@@ -236,10 +237,11 @@ bot.on('message', async message => {
                     const pickspellemb = new Discord.MessageEmbed()
                         .setTitle(`Choose your preferred ${collected.first().content.charAt(0).toUpperCase() + collected.first().content.slice(1)} spell:`)
                         .setDescription(spellnames.join('\n'))
-                        .setFooter('You have 30 seconds to choose a valid option. | Some results may have been omitted for the proper length of Discord messages. | Entries are case-sensitive.')
+                        .setFooter('You have 30 seconds to choose a valid option. | Some results may have been omitted for the proper length of Discord messages.')
                     message.channel.send(pickspellemb)
                     message.channel.awaitMessages(m => m.author.id == message.author.id,
                         { max: 1, time: 30000000 }).then(collected => {
+                            collected.first().content = collected.first().content.charAt(0).toUpperCase() + collected.first().content.slice(1)
                             if (!spellnames.includes(collected.first().content)) return;
                             let correctspell = correctspellelement[spellnames.indexOf(collected.first().content)]
                             let possibledescriptions;
@@ -314,6 +316,27 @@ bot.on('message', async message => {
                 .setFooter(`Requested by ${message.author.tag}.`)
             message.channel.send(infoemb)
             break;
+            case 'p!eval':
+                args.shift()
+        
+            if(message.author.id !== '683792601219989601') return;
+            try {
+                function clean(text) {
+                    if (typeof(text) === "string")
+                      return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+                    else
+  return text;
+                  }
+                const code = args.join(" ");
+              let evaled = eval(code);
+         
+              if (typeof evaled !== "string")
+                evaled = require("util").inspect(evaled);
+         
+              message.channel.send(clean(evaled), {code:"js"});
+            } catch (err) {
+              message.channel.send(` \`\`\`js\n${clean(err)}\n\`\`\``);
+            }
     }
 })
 bot.login(token)
