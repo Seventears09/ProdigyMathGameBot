@@ -70,7 +70,10 @@ bot.on('message', async message => {
                     message.channel.send(pickentryemb)
                     message.channel.awaitMessages(m => m.author.id == message.author.id,
                         { max: 1, time: 30000000 }).then(collected => {
-                            collected.first().content = collected.first().content.charAt(0).toUpperCase() + collected.first().content.slice(1)
+                            collected.first().content = collected.first().content.toLowerCase()
+                           for(i = 0; i < entriesarray.length; i++){
+                               entriesarray[i] = entriesarray[i].toLowerCase()
+                           }
                             if (!entriesarray.includes(collected.first().content)) return;
                             let correctobj = correctdata[entriesarray.indexOf(collected.first().content)]
                             let r = correctobj.data.rarity
@@ -156,7 +159,10 @@ bot.on('message', async message => {
                     message.channel.send(petnameembed)
                     message.channel.awaitMessages(m => m.author.id == message.author.id,
                         { max: 1, time: 30000000 }).then(collected => {
-                            collected.first().content = collected.first().content.charAt(0).toUpperCase() + collected.first().content.slice(1)
+                            collected.first().content = collected.first().content.toLowerCase()
+                            for(i = 0; i < petnames.length; i++){
+                                petnames[i] = petnames[i].toLowerCase()
+                            }
                             if (!petnames.includes(collected.first().content)) return;
                             let correctpet = correctelement[petnames.indexOf(collected.first().content)]
                             let nativespells = []
@@ -241,7 +247,10 @@ bot.on('message', async message => {
                     message.channel.send(pickspellemb)
                     message.channel.awaitMessages(m => m.author.id == message.author.id,
                         { max: 1, time: 30000000 }).then(collected => {
-                            collected.first().content = collected.first().content.charAt(0).toUpperCase() + collected.first().content.slice(1)
+                            collected.first().content = collected.first().content.toLowerCase()
+                            for(i = 0; i < spellnames.length; i++){
+                                spellnames[i] = spellnames[i].toLowerCase()
+                            }
                             if (!spellnames.includes(collected.first().content)) return;
                             let correctspell = correctspellelement[spellnames.indexOf(collected.first().content)]
                             let possibledescriptions;
