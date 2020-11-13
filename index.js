@@ -1,11 +1,8 @@
-// constant variables
 const Discord = require('discord.js')
 const bot = new Discord.Client()
 const token = require('./token.json').token
 const fetch = require('node-fetch')
-// Prodigy data
 const rarities = [['(Very Common)', ':white_large_square:', '#FFFFFF'], ['(Common)', ':green_square: ', '#32CD32'], ['(Uncommon)', ':blue_square:', '#2a9df4'], ['(Rare)', ':purple_square:', '#800080'], ['(Legendary)', ':yellow_square:', '#FFFF00']]
-// Now the actual bot stuff, so stop doing these comments arc
 bot.on('ready', () => {
     console.log(`Online`);
     bot.user.setActivity('Noot | [p!help]', {
@@ -14,7 +11,9 @@ bot.on('ready', () => {
 
 })
 bot.on('message', async message => {
-    let prodigydata = await (await fetch('https://cdn.prodigygame.com/game/data/dev/data.json')).json()
+    let gameAPIdata = await (await fetch('https://api.prodigygame.com/game-api/status')).json()
+     let version = gameAPIdata.data.prodigyGameFlags.gameDataVersion
+    let prodigydata = await (await fetch(`https://cdn.prodigygame.com/game/data/production/${version}/data.json`)).json()
     let bootdata = prodigydata.boots
     let hatdata = prodigydata.hat
     let weapondata = prodigydata.weapon
